@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from numpy import np
+import numpy as np
 
 
 class BaseScaler(ABC):
@@ -11,5 +11,5 @@ class BaseScaler(ABC):
         pass
 
     @abstractmethod
-    def extract_features(self, features: np.array):
+    def scale_features(self, features: np.array):
         pass

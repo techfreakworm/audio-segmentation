@@ -1,0 +1,1 @@
+from .tring_predict import TringPredict

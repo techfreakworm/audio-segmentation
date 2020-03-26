@@ -8,10 +8,9 @@ class SpectralFeature(BaseFeature):
         super().__init__()
 
     def extract(self, audio_chunk: np.array, sampling_rate: int):
-        y  = audio_chunk
+        y  = audio_chunk.copy()
         sr = sampling_rate
         chroma_stft = librosa.feature.chroma_stft(y=y, sr=sr)
-        chroma_cqt = librosa.feature.chroma_cqt(y=y, sr=sr)
         chroma_cens = librosa.feature.chroma_cens(y=y, sr=sr)
         spec_cent = librosa.feature.spectral_centroid(y=y, sr=sr)
         spec_bw = librosa.feature.spectral_bandwidth(y=y, sr=sr)
@@ -23,6 +22,7 @@ class SpectralFeature(BaseFeature):
         rms = librosa.feature.rms(y=y)
         poly = librosa.feature.poly_features(y=y,sr=sr)
         tonnetz = librosa.feature.tonnetz(y=y,sr=sr)
+        chroma_cqt = librosa.feature.chroma_cqt(y=y, sr=sr)
         to_append = f'{np.mean(chroma_stft)} {np.mean(chroma_cqt)} {np.mean(chroma_cens)} {np.mean(rms)} {np.mean(spec_cent)} {np.mean(spec_bw)} {np.mean(spec_cont)} {np.mean(spec_flat)} {np.mean(rolloff)} {np.mean(zcr)} {np.mean(poly)} {np.mean(tonnetz)}'    
         for e in mfcc:
             to_append += f' {np.mean(e)}'
