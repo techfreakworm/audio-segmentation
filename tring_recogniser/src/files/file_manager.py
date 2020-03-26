@@ -1,9 +1,10 @@
 from abc import ABC, abstractmethod
 
-class BaseModel(ABC):
+
+class FileManager(ABC):
     def __init__(self):
         pass
 
     @abstractmethod
-    def get_model(self, path=None):
+    def load(self, path=None):
         pass
