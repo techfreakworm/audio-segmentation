@@ -1,10 +1,10 @@
 import joblib
 from config import Config
+from .base_scaler import BaseScaler
 
-
-class NormalisedScaler:
+class NormalisedScaler(BaseScaler):
     def __init__(self):
-        pass
+        super().__init__()
 
     def get_scaler(self, path=None):
         if path is None:
