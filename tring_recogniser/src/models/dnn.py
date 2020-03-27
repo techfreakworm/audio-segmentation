@@ -1,5 +1,7 @@
 from config import Config
 from .base_model import BaseModel
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3' 
 import keras
 
 

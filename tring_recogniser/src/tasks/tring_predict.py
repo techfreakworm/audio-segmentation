@@ -45,7 +45,6 @@ class TringPredict:
         for chunk_index in range(sr, len(audio_chunk), sr):
             current_chunk = audio_chunk[last_chunk_index:chunk_index,]
             prediction = self.predict(self.get_scaled_features([self.get_features(current_chunk, sr)]))[0]
-            print(prediction)
             if prediction == 1 and not start_printed:
                 print(f'Tring Tring started at: {chunk_index/sr}s')
                 start_printed=True
