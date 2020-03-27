@@ -7,7 +7,13 @@ import sys
 
 
 class TringPredict:
+    """Task to predict recognise start and end of 'Tring Tring' sound"""
     def __init__(self, input_file: str=None):
+        """Initialise task
+        
+        Keyword Arguments:
+            input_file {str} -- Path of input file (default: {None})
+        """        
         print(f'Using input file: {input_file}')
         try:
             audio_data, sr = self.load_audio(input_file)
@@ -21,22 +27,61 @@ class TringPredict:
 
 
 
-    def load_audio(self, path=None):
+    def load_audio(self, path=None) -> np.ndarray:
+        """Load audio file
+        
+        Keyword Arguments:
+            path {str} -- Path to file (default: {None})
+        
+        Returns:
+            numpy.ndarray -- File as numpy array of floats
+        """        
         return AudioFileManager().load(path)
 
 
-    def get_features(self, audio_data, sr):
+    def get_features(self, audio_data, sr) -> np.ndarray:
+        """Get features of Audio Data
+        
+        Arguments:
+            audio_data {numpy.ndarray} -- Audio data loaded as array of floats
+            sr {int} -- Sampling rate
+        
+        Returns:
+            numpy.ndarray -- Array of features
+        """        
         return self.spectral_feature.extract(audio_chunk=audio_data, sampling_rate=sr)
 
 
-    def get_scaled_features(self, features: np.ndarray):
+    def get_scaled_features(self, features: np.ndarray) -> np.ndarray:
+        """Scale the features
+        
+        Arguments:
+            features {np.ndarray} -- Features to be scaled
+        
+        Returns:
+            numpy.ndarray -- Scaled features
+        """        
         return self.scaler.scale_features(features=features)
 
 
-    def predict(self, scaled_features):
+    def predict(self, scaled_features) -> np.ndarray:
+        """Predict the output from 'TringTring' or 'Talk', given the features
+        
+        Arguments:
+            scaled_features {numpy.ndarray} -- Scaled features
+        
+        Returns:
+            numpy.ndarray -- Numpy array. [0] stands for 'Talk' [1] stands for 'TringTring'
+        """        
         return self.model.predict_classes(scaled_features)
 
     def prediction_loop(self, audio_chunk, sr):
+        """Prediction loop for contiguous audio stream
+        
+        Arguments:
+            audio_chunk {numpy.ndarray} -- Audio Data loaded as numpy array of floats
+            sr {int} -- Sampling rate
+        """        
         last_chunk_index = 0
         start_printed = False
         last_tring_time = -1

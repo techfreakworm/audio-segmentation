@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 class Config:
+    """Config file for the application"""    
     DNN_MODEL_PATH = os.getenv('DNN_MODEL_PATH')
     NORMALISED_SCALER_PATH = os.getenv('NORMALISED_SCALER_PATH') 
     # DNN Model has only been developed for audio with sampling rate 44100

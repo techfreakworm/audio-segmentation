@@ -4,10 +4,21 @@ import librosa
 
 
 class SpectralFeature(BaseFeature):
+    """Class to deal with Audio related spectral features"""    
     def __init__(self):
+        """Default constructor"""        
         super().__init__()
 
-    def extract(self, audio_chunk: np.ndarray, sampling_rate: int):
+    def extract(self, audio_chunk: np.ndarray, sampling_rate: int) -> np.ndarray:
+        """Extract features from Audio as array
+        
+        Arguments:
+            audio_chunk {np.ndarray} -- Audio as array of floats
+            sampling_rate {int} -- Sampling rate of audio while importing
+        
+        Returns:
+            numpy.ndarray -- Array of extracted features
+        """        
         x  = audio_chunk.copy()
         sr = sampling_rate
         chroma_stft = librosa.feature.chroma_stft(y=x, sr=sr)
