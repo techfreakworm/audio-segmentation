@@ -11,5 +11,5 @@ class BaseScaler(ABC):
         pass
 
     @abstractmethod
-    def scale_features(self, features: np.array):
+    def scale_features(self, features: np.ndarray):
         pass

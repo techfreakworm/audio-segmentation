@@ -15,5 +15,5 @@ class NormalisedScaler(BaseScaler):
             path = Config.NORMALISED_SCALER_PATH
         return joblib.load(path)
 
-    def scale_features(self, features: np.array):
+    def scale_features(self, features: np.ndarray):
         return self.scaler.transform(features)

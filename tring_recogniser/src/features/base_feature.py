@@ -7,5 +7,5 @@ class BaseFeature(ABC):
         pass
 
     @abstractmethod
-    def extract(self, audio_chunk: np.array):
+    def extract(self, audio_chunk: np.ndarray):
         pass

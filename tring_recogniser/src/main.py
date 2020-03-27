@@ -3,6 +3,6 @@ import sys
 
 
 if __name__ == '__main__':
-    i, o = CommandLineArgProcessor(sys.argv[1:]).get_io()
+    i= CommandLineArgProcessor(sys.argv[1:]).get_input()
     from tasks import TringPredict
-    TringPredict(i, o)
+    TringPredict(i)
